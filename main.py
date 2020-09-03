@@ -1,16 +1,19 @@
-import pandas
 import numpy
+import pandas
 
-from readIn import readIn
 from Preprocess import Preprocess
+from Process import Process
+from readIn import readIn
 
 originalDataFrame = readIn('4165188.csv')
 
-preprocess = Preprocess(originalDataFrame)
+preprocess = Preprocess()
 
-preprocess.preprocess()
+originalDataFrame = preprocess.start(originalDataFrame)
 
-originalDataFrame = preprocess.dataFrame
+process = Process()
+
+originalDataFrame = process.start(originalDataFrame)
 
 
 print(originalDataFrame.info())
@@ -20,5 +23,5 @@ print(originalDataFrame['开始答题时间'])
 print(originalDataFrame)
 print(originalDataFrame['检查日期'])
 '''
-# originalDataFrame.to_csv('1.csv', encoding="utf_8_sig")
+originalDataFrame.to_csv('1.csv', encoding="utf_8_sig")
 # print(originalDataFrame.columns.values)
