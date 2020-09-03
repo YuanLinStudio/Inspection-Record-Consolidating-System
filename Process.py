@@ -8,32 +8,69 @@ class Process:
     dataFrame = []
 
     def __init__(self):
-        self.stations = loadJson'stations.json')
+        self.stations = loadJson('stations.json')
+        self.supervisors = loadJson('supervisors.json')
 
     def start(self, dataFrame):
         self.dataFrame = dataFrame
 
-        self.__lineInCharge()
+        self.lineInCharge()
+        self.supervisorID()
 
         return self.dataFrame
 
-    def __lineInCharge(self):
+    def lineInCharge(self):
 
-        self.dataFrame['线别'] = ''
+        self.dataFrame['线别'] = self.dataFrame.apply(lambda dataFrame: self.__lineInCharge(
+            dataFrame['检查地点位置'], dataFrame['检查地点线路'], dataFrame['检查地点站点']), axis=1)
 
-        for index, row in self.dataFrame.iterrows():
+    def __lineInCharge(self, position, line, station) -> str:
 
-            if row['检查地点位置'] == '车站':
+        if position == '车站':
 
-                self.dataFrame.loc[index, '线别'] = self.stations.get(row['检查地点站点'])
+            result = self.stations.get(station)
 
-            elif row['检查地点位置'] == '列车上':
+        elif position == '列车上':
 
-                self.dataFrame.loc[index, '线别'] = row['检查地点线路']
+            result = line
 
-            elif row['检查地点位置'] == '其他位置':
+        elif position == '其他位置':
 
-                self.dataFrame.loc[index, '线别'] = '其他'
+            result = '其他'
 
-    def __supervisorID(self):
-        pass
+        return result
+
+    def supervisorID(self):
+
+        self.dataFrame['检查单位'] = self.dataFrame.apply(
+            lambda dataFrame: self.__supervisorID(dataFrame['服务监督员编号或姓名']), axis=1)
+
+    def __supervisorID(self, string) -> str:
+
+        string = string.strip()
+
+        if string.isdigit():
+
+            id = str('JDY%s' % string)
+
+            if id in self.supervisors.values():
+
+                result = id
+
+            else:
+
+                result = string
+
+        else:
+
+            id = self.supervisors.get(string)
+
+            if id is not None:
+
+                result = id
+
+            else:
+
+                result = string
+
+        return result
