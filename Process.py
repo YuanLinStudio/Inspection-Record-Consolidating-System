@@ -12,6 +12,10 @@ class Process:
         self.stations = loadJson('stations.json')
         self.supervisors = loadJson('supervisors.json')
         self.departments = loadJson('departments.json')
+        
+        # self.supervisors 的反字典
+        self.supervisorsName = {id: name for name,
+                                id in self.supervisors.items()}
 
     def start(self, dataFrame):
 
@@ -19,6 +23,7 @@ class Process:
 
         self.lineInCharge()
         self.supervisorID()
+        self.supervisorName()
         self.departmentInCharge()
 
         return self.dataFrame
@@ -78,6 +83,25 @@ class Process:
             else:
 
                 result = string
+
+        return result
+
+    def supervisorName(self):
+
+        self.dataFrame['监督员姓名'] = self.dataFrame.apply(
+            lambda dataFrame: self.__supervisorName(dataFrame['检查单位']), axis=1)
+
+    def __supervisorName(self, id) -> str:
+
+        name = self.supervisorsName.get(id)
+
+        if name is not None:
+
+            result = name
+
+        else:
+
+            result = id
 
         return result
 

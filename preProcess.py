@@ -14,11 +14,18 @@ class Preprocess:
         # 重命名列
         self.columnRename()
 
+        # 数据版本
+        self.version()
+
         # 是否发现了问题列
         self.isIssueFound()
 
         # 去除上/下行标记
         self.removeBounds()
+
+        # 处理其他问题类型和待评定问题分类
+        self.undefinedCategory()
+        self.undefinedType()
 
         # 附件个数
         self.attachmentCount()
@@ -50,6 +57,19 @@ class Preprocess:
 
         self.dataFrame.rename(columns=columnRenameDict, inplace=True)
 
+    def version(self):
+
+        self.dataFrame['数据版本'] = self.dataFrame.apply(lambda dataFrame: self.__version(dataFrame['开始答题时间']), axis=1)
+
+    def __version(self, timeStart):
+
+        currentVersion = '20190801'
+        timeVersion = datetime.strptime(currentVersion, '%Y%m%d').date()
+
+        if timeStart >= timeVersion:
+
+            return '20190801'
+
     def isIssueFound(self):
 
         self.dataFrame['是否发现问题'] = self.dataFrame['4.您本次检查是否发现了问题？'].apply(
@@ -58,8 +78,19 @@ class Preprocess:
         self.dataFrame.drop(['4.您本次检查是否发现了问题？'], axis=1, inplace=True)
 
     def removeBounds(self):
+
         self.dataFrame['检查地点'] = self.dataFrame['检查地点'].apply(
             lambda text: text.replace('（上行）', '').replace('（下行）', ''))
+
+    def undefinedCategory(self):
+
+        self.dataFrame['问题分类'] = self.dataFrame['问题分类'].apply(
+            lambda text: text.replace('未列出', ''))
+
+    def undefinedType(self):
+
+        self.dataFrame['问题类型'] = self.dataFrame['问题类型'].apply(
+            lambda text: text.replace('其他未列出的问题类型', '其他'))
 
     def attachmentCount(self):
 
@@ -80,7 +111,7 @@ class Preprocess:
 
             count += 1
 
-        return '%d' % count
+        return count
 
     def columnMerge(self):
 
