@@ -17,6 +17,9 @@ class Preprocess:
         # 是否发现了问题列
         self.isIssueFound()
 
+        # 去除上/下行标记
+        self.removeBounds()
+
         # 附件个数
         self.attachmentCount()
 
@@ -38,7 +41,7 @@ class Preprocess:
                             '1.服务监督员编号或姓名': '服务监督员编号或姓名',
                             '3.检查地点:请选择': '检查地点位置',
                             '3.检查地点:请选择.1': '检查地点线路',
-                            '3.检查地点:请选择.2': '检查地点站点',
+                            '3.检查地点:请选择.2': '检查地点',
                             '6.问题描述': '问题描述',
                             '7.问题类型及分类:请选择': '问题类型',
                             '7.问题类型及分类:请选择.1': '问题分类',
@@ -53,6 +56,10 @@ class Preprocess:
             lambda text: '发现了问题' in text)
 
         self.dataFrame.drop(['4.您本次检查是否发现了问题？'], axis=1, inplace=True)
+
+    def removeBounds(self):
+        self.dataFrame['检查地点'] = self.dataFrame['检查地点'].apply(
+            lambda text: text.replace('（上行）', '').replace('（下行）', ''))
 
     def attachmentCount(self):
 

@@ -23,5 +23,5 @@ print(originalDataFrame['开始答题时间'])
 print(originalDataFrame)
 print(originalDataFrame['检查日期'])
 '''
-originalDataFrame.to_csv('1.csv', encoding="utf_8_sig")
+originalDataFrame.to_csv('1.csv', encoding="utf_8_sig", index=False)
 # print(originalDataFrame.columns.values)

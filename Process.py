@@ -8,7 +8,7 @@ class Process:
     dataFrame = []
 
     def __init__(self):
-        
+
         self.stations = loadJson('stations.json')
         self.supervisors = loadJson('supervisors.json')
         self.departments = loadJson('departments.json')
@@ -26,7 +26,9 @@ class Process:
     def lineInCharge(self):
 
         self.dataFrame['线别'] = self.dataFrame.apply(lambda dataFrame: self.__lineInCharge(
-            dataFrame['检查地点位置'], dataFrame['检查地点线路'], dataFrame['检查地点站点']), axis=1)
+            dataFrame['检查地点位置'], dataFrame['检查地点线路'], dataFrame['检查地点']), axis=1)
+
+        self.dataFrame.drop(['检查地点位置', '检查地点线路'], axis=1, inplace=True)
 
     def __lineInCharge(self, position, line, station) -> str:
 
