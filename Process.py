@@ -8,14 +8,18 @@ class Process:
     dataFrame = []
 
     def __init__(self):
+        
         self.stations = loadJson('stations.json')
         self.supervisors = loadJson('supervisors.json')
+        self.departments = loadJson('departments.json')
 
     def start(self, dataFrame):
+
         self.dataFrame = dataFrame
 
         self.lineInCharge()
         self.supervisorID()
+        self.departmentInCharge()
 
         return self.dataFrame
 
@@ -72,5 +76,24 @@ class Process:
             else:
 
                 result = string
+
+        return result
+
+    def departmentInCharge(self):
+
+        self.dataFrame['责任单位'] = self.dataFrame.apply(lambda dataFrame: self.__departmentInCharge(
+            dataFrame['线别']), axis=1)
+
+    def __departmentInCharge(self, line) -> str:
+
+        department = self.departments.get(line)
+
+        if department is not None:
+
+            result = department
+
+        else:
+
+            result = ''
 
         return result

@@ -6,7 +6,7 @@ import numpy
 
 def loadJson(filename):
     '''load dict from json file'''
-    with open(filename, 'r') as json_file:
+    with open(filename, 'r', encoding='utf-8') as json_file:
         dic = json.load(json_file)
     return dic
 
