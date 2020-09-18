@@ -36,6 +36,9 @@ class Preprocess:
         # 附件个数
         self.attachmentCount()
 
+        # 附件移位，若前者为空则前移
+        self.attachmentSort()
+
         # 检查日期和时间列合并
         self.columnMerge()
 
@@ -93,8 +96,6 @@ class Preprocess:
         self.dataFrame['附件个数'] = self.dataFrame.apply(
             lambda dataFrame: self.__attachmentCount(dataFrame['附件 1'], dataFrame['附件 2']), axis=1)
 
-        self.dataFrame.drop(['9.请您选择本次检查共计划提交几份附件'], axis=1, inplace=True)
-
     def __attachmentCount(self, attachment1, attachment2) -> str:
 
         count = 0
@@ -108,6 +109,19 @@ class Preprocess:
             count += 1
 
         return count
+
+    def attachmentSort(self):
+
+        self.dataFrame['附件 1'], self.dataFrame['附件 2'] = zip(*self.dataFrame.apply(
+            lambda dataFrame: self.__attachmentSort(dataFrame['附件 1'], dataFrame['附件 2']), axis=1))
+
+    def __attachmentSort(self, attachment1, attachment2) -> (str, str):
+
+        if attachment1 == '' and attachment2 != '':
+
+            attachment1, attachment2 = attachment2, attachment1
+
+        return attachment1, attachment2
 
     def columnMerge(self):
 

@@ -29,6 +29,8 @@ dataFrame = attachmentMatch.operate(dataFrame, r'C:\Users\yuanl\Downloads\腾讯
 attachmentDict = attachmentMatch.getHashDict()
 saveJson('attachmentMatch.json', attachmentDict)
 
+dataFrame = postprocess.reorderAfterAttachmentMatch(dataFrame)
+
 print(originalDataFrame.info())
 '''
 print(originalDataFrame['开始答题时间'][4]>originalDataFrame['开始答题时间'][5])

@@ -20,6 +20,10 @@ class AttachmentMatch:
         self.dataFrame = dataFrame
         self.dir = dir
 
+        # 将 dataFrame 按原始记录编号从大到小排列
+        self.dataFrame = self.dataFrame.sort_values(
+            by=['原始记录编号'], ascending=[False])
+
         self.fileList = self.getFileList(dir)
 
         self.makeHashDict()
@@ -27,6 +31,10 @@ class AttachmentMatch:
         self.matchOriginalRecord()
 
         self.archive()
+
+        # 将 dataFrame 恢复顺序，按序号从大到小排列
+        self.dataFrame = self.dataFrame.sort_values(
+            by=['序号'], ascending=[True])
 
         return self.dataFrame
 
@@ -51,11 +59,27 @@ class AttachmentMatch:
     def makeHashDict(self):
 
         for fileDir in self.fileList:
+
             hash = fileDir.split('_')[-1].split('.')[0]
+
             dirDict = dict()
             dirDict['dir'] = fileDir
             dirDict['filename'] = fileDir.split('\\')[-1]
             dirDict['ext'] = fileDir.split('.')[-1]
+
+            if dirDict['ext'] in ['jpg', 'JPG', 'jpeg', 'JPEG', 'png', 'PNG',
+                                  'bmp', 'BMP', 'tif', 'TIF', 'tiff', 'TIFF']:
+
+                dirDict['filetype'] = '图'
+
+            elif dirDict['ext'] in ['gif', 'GIF', 'mp4', 'MP4', 'mov', 'MOV']:
+
+                dirDict['filetype'] = '视频'
+
+            else:
+
+                dirDict['filetype'] = '附件'
+
             self.hashDict[hash] = dirDict
 
     def matchOriginalRecord(self):
@@ -105,6 +129,7 @@ class AttachmentMatch:
         self.archivedPath = self.dir + '\\已匹配附件\\'
 
         if not os.path.exists(self.archivedPath):
+
             os.makedirs(self.archivedPath)
 
         for hash, item in self.hashDict.items():
@@ -119,60 +144,38 @@ class AttachmentMatch:
 
             # 复制一份到指定目录
             originalFile = item['dir']
-            archivedFile = self.archivedPath + '图' + \
-                str('%d' % record['序号']) + '.' + item['ext']
+            archivedFile = self.archivedPath + \
+                item.get('filetype') + str('%d' %
+                                           record['序号']) + '.' + item['ext']
 
+            if originalRecord['Slot'] == 1:
+
+                # 更新 dataFrame 附件信息
+                self.dataFrame.loc[self.dataFrame['原始记录编号'] == originalRecord['No'],
+                                '附件'] = archivedFile.split('\\')[-1].split('.')[0]
+
+            else:
+
+                archivedFile = self.archivedPath + \
+                    item.get('filetype') + str('%d' %
+                                               record['序号']) + ' (2).' + item['ext']
+
+                '''
+                # 更新 dataFrame 附件信息
+                self.dataFrame.loc[self.dataFrame['原始记录编号'] == originalRecord['No'],
+                                   '附件'] = ','.join([self.dataFrame.loc[self.dataFrame['原始记录编号'] == originalRecord['No'],
+                                                                        '附件'].to_string(header=False, index=False), archivedFile.split('\\')[-1].split('.')[0]])
+                '''
+
+            # 若存在同名文件
             if os.path.isfile(archivedFile):
-                '''
-                os.rename(archivedFile, self.archivedPath + '图' +
-                          str('%d' % record['序号']) + '-1.' + item['ext'])
-                '''
-                archivedFile = self.archivedPath + '图' + \
-                    str('%d' % record['序号']) + ' - 2.' + item['ext']
+                
+                print('%s 已被覆盖' % archivedFile)
 
+            # 复制文件
             shutil.copyfile(originalFile, archivedFile)
 
             # 更新 Json 文件
-            self.hashDict[hash]['archivedDir'] = archivedFile
-            self.hashDict[hash]['archivedFilename'] = archivedFile.split(
-                '\\')[-1]
-
-            # 更新附件信息
-            self.dataFrame.loc[self.dataFrame['原始记录编号'] == originalRecord['No'], '附件'] += archivedFile.split('\\')[-1].split('.')[0]
-
-    def archiveeee(self):
-
-        # 仅筛选有附件的记录
-        validDataFrame = self.dataFrame[self.dataFrame['附件个数'] > 0]
-
-        # 新建目录
-        self.archivedPath = self.dir + '\\已匹配附件\\'
-
-        if not os.path.exists(self.archivedPath):
-            os.makedirs(self.archivedPath)
-
-        validDataFrame.apply(lambda dataFrame: self.__archive(
-            dataFrame['附件 1'], dataFrame['序号']), axis=1)
-
-    def __archive(self, fileName, sn):
-
-        if fileName is None:
-            return
-
-        if fileName == '':
-            return
-
-        hash = fileName.split('_')[-1].split('.')[0]
-
-        hashItem = self.hashDict.get(hash)
-
-        if hashItem is not None:
-
-            originalFile = hashItem['dir']
-            archivedFile = self.archivedPath + \
-                '图' + str(sn) + '.' + hashItem['ext']
-            shutil.copyfile(originalFile, archivedFile)
-
             self.hashDict[hash]['archivedDir'] = archivedFile
             self.hashDict[hash]['archivedFilename'] = archivedFile.split(
                 '\\')[-1]

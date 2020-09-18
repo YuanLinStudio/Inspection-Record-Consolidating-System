@@ -12,7 +12,7 @@ class Process:
         self.stations = loadJson('stations.json')
         self.supervisors = loadJson('supervisors.json')
         self.departments = loadJson('departments.json')
-        
+
         # self.supervisors 的反字典
         self.supervisorsName = {id: name for name,
                                 id in self.supervisors.items()}
