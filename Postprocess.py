@@ -9,7 +9,7 @@ class Postprocess:
 
         pass
 
-    def start(self, dataFrame):
+    def operate(self, dataFrame):
 
         self.dataFrame = dataFrame
 

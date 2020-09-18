@@ -17,7 +17,7 @@ class Process:
         self.supervisorsName = {id: name for name,
                                 id in self.supervisors.items()}
 
-    def start(self, dataFrame):
+    def operate(self, dataFrame):
 
         self.dataFrame = dataFrame
 

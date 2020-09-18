@@ -2,12 +2,18 @@ from datetime import datetime
 
 import pandas
 
+from JsonService import loadJson
+
 
 class Preprocess:
 
     dataFrame = []
 
-    def start(self, dataFrame):
+    def __init__(self):
+
+        self.columnRecognizer = loadJson('columnRecognizer.json')
+
+    def operate(self, dataFrame):
 
         self.dataFrame = dataFrame
 
@@ -44,22 +50,12 @@ class Preprocess:
 
     def columnRename(self):
 
-        columnRenameDict = {'编号': '原始记录编号',
-                            '1.服务监督员编号或姓名': '服务监督员编号或姓名',
-                            '3.检查地点:请选择': '检查地点位置',
-                            '3.检查地点:请选择.1': '检查地点线路',
-                            '3.检查地点:请选择.2': '检查地点',
-                            '6.问题描述': '问题描述',
-                            '7.问题类型及分类:请选择': '问题类型',
-                            '7.问题类型及分类:请选择.1': '问题分类',
-                            '10.附件': '附件 1',
-                            '11.附件': '附件 2'}
-
-        self.dataFrame.rename(columns=columnRenameDict, inplace=True)
+        self.dataFrame.rename(columns=self.columnRecognizer, inplace=True)
 
     def version(self):
 
-        self.dataFrame['数据版本'] = self.dataFrame.apply(lambda dataFrame: self.__version(dataFrame['开始答题时间']), axis=1)
+        self.dataFrame['数据版本'] = self.dataFrame.apply(
+            lambda dataFrame: self.__version(dataFrame['开始答题时间']), axis=1)
 
     def __version(self, timeStart):
 

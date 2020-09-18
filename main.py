@@ -12,22 +12,22 @@ originalDataFrame = readIn('4165188.csv')
 
 preprocess = Preprocess()
 
-originalDataFrame = preprocess.start(originalDataFrame)
+originalDataFrame = preprocess.operate(originalDataFrame)
 
 process = Process()
 
-originalDataFrame = process.start(originalDataFrame)
+originalDataFrame = process.operate(originalDataFrame)
 
 postprocess = Postprocess()
 
-dataFrame = postprocess.start(originalDataFrame)
+dataFrame = postprocess.operate(originalDataFrame)
 
 attachmentMatch = AttachmentMatch()
 
-dataFrame = attachmentMatch.start(dataFrame, r'C:\Users\yuanl\Downloads\腾讯问卷\问卷#4165188 - 西安地铁服务监督员检查记录提交系统')
+dataFrame = attachmentMatch.operate(dataFrame, r'C:\Users\yuanl\Downloads\腾讯问卷\问卷#4165188 - 西安地铁服务监督员检查记录提交系统')
 
 attachmentDict = attachmentMatch.getHashDict()
-saveJson('am.json', attachmentDict)
+saveJson('attachmentMatch.json', attachmentDict)
 
 print(originalDataFrame.info())
 '''

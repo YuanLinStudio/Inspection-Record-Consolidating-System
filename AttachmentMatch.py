@@ -15,7 +15,7 @@ class AttachmentMatch:
 
         pass
 
-    def start(self, dataFrame, dir):
+    def operate(self, dataFrame, dir):
 
         self.dataFrame = dataFrame
         self.dir = dir
