@@ -1,6 +1,6 @@
 import pandas
 
-from JsonService import loadJson
+from JsonService import JsonService
 
 
 class Process:
@@ -9,9 +9,11 @@ class Process:
 
     def __init__(self):
 
-        self.stations = loadJson('stations.json')
-        self.supervisors = loadJson('supervisors.json')
-        self.departments = loadJson('departments.json')
+        self.jsonService = JsonService()
+
+        self.stations = self.jsonService.load('stations.json')
+        self.supervisors = self.jsonService.load('supervisors.json')
+        self.departments = self.jsonService.load('departments.json')
 
         # self.supervisors 的反字典
         self.supervisorsName = {id: name for name,

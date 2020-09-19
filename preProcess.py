@@ -2,7 +2,7 @@ from datetime import datetime
 
 import pandas
 
-from JsonService import loadJson
+from JsonService import JsonService
 
 
 class Preprocess:
@@ -11,7 +11,9 @@ class Preprocess:
 
     def __init__(self):
 
-        self.columnRecognizer = loadJson('columnRecognizer.json')
+        self.jsonService = JsonService()
+
+        self.columnRecognizer = self.jsonService.load('columnRecognizer.json')
 
     def operate(self, dataFrame):
 
