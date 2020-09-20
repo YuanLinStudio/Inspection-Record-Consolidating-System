@@ -1,40 +1,24 @@
-import numpy
-import pandas
+'''
+主程序启动器
+'''
 
-from Preprocess import Preprocess
-from Process import Process
-from readIn import readIn
-from AttachmentMatch import AttachmentMatch
-from JsonService import JsonService
-from Postprocess import Postprocess
+import sys
 
-jsonService = JsonService()
+from PyQt5 import QtCore, QtWidgets
 
-originalDataFrame = readIn('4165188.csv')
+from WindowController import WindowController
 
-preprocess = Preprocess()
+if __name__ == '__main__':
+    # 执行入口
 
-originalDataFrame = preprocess.operate(originalDataFrame)
+    # 设置高分辨率屏幕行为
+    QtWidgets.QApplication.setAttribute(
+        QtCore.Qt.AA_EnableHighDpiScaling)  # 支持高分辨率屏幕
+    QtWidgets.QApplication.setAttribute(
+        QtCore.Qt.AA_UseHighDpiPixmaps)  # 使用高分辨率图标
 
-process = Process()
-
-originalDataFrame = process.operate(originalDataFrame)
-
-postprocess = Postprocess()
-
-dataFrame = postprocess.operate(originalDataFrame)
-
-attachmentMatch = AttachmentMatch()
-
-dataFrame = attachmentMatch.operate(dataFrame, r'C:\Users\yuanl\Downloads\腾讯问卷\问卷#4165188 - 西安地铁服务监督员检查记录提交系统')
-
-attachmentDict = attachmentMatch.getHashDict()
-jsonService.save('attachment.json', attachmentDict)
-
-dataFrame = postprocess.reorderAfterAttachmentMatch(dataFrame)
-
-print(originalDataFrame.info())
-
-originalDataFrame.to_csv('1.csv', encoding="utf_8_sig", index=False)
-dataFrame.to_csv('2.csv', encoding="utf_8_sig", index=False)
-# print(originalDataFrame.columns.values)
+    # 程序载入
+    app = QtWidgets.QApplication(sys.argv)
+    windowController = WindowController()
+    windowController.show()
+    sys.exit(app.exec_())

@@ -1,0 +1,89 @@
+* {
+    font-family: "Microsoft YaHei";
+}
+
+#topWidget {
+    background-color: #F5F5F5;
+    border-top: 1px solid #DDDDDD;
+    border-left: 1px solid #DDDDDD;
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+}
+
+#messageWidget {
+    background-color: #F5F5F5;
+    border-left: 1px solid #DDDDDD;
+    border-right: 1px solid #DDDDDD;
+    border-bottom: 1px solid #DDDDDD;
+    border-bottom-left-radius: 2px;
+    border-bottom-right-radius: 2px;
+}
+
+#minimizeButton,
+#closeButton {
+    padding: 0px 5px;
+    border-radius: 1px;
+    background-color: transparent;
+    border: none;
+
+    color: transparent;
+    background-repeat: no-repeat;
+    width: 20px;
+    height: 20px;
+}
+
+#closeButton {
+    border-right: 1px solid #DDDDDD;
+}
+
+#minimizeButton:hover,
+#closeButton:hover {
+    background-color: rgba(0, 0, 0, 0.100);
+    background-repeat: no-repeat;
+}
+
+#closeButton:hover {
+    background-color: rgba(255, 0, 0, 0.800);
+    background-repeat: no-repeat;
+}
+
+#minimizeButton:pressed,
+#closeButton:pressed {
+    background-color: rgba(0, 0, 0, 0.200);
+    border: 1px solid rgba(0, 0, 0, 0.300);
+    background-repeat: no-repeat;
+}
+
+
+QLabel {
+    font-size: 10px;
+}
+
+
+QTextEdit {
+    background: transparent;
+    border: none;
+}
+
+QPushButton {
+    background-color: rgba(0, 0, 0, 0.050);
+    font-size: 10px;
+    padding: 0px 10px;
+    border: 1px solid #EEEEEE;
+    border-radius: 1px;
+    height: 20px;
+}
+
+QPushButton:hover {
+    border: 1px solid transparent;
+    border-radius: 1px;
+    background-color: #009682;
+    color: white;
+}
+
+QPushButton:pressed {
+    border: 1px solid #009682;
+    border-radius: 1px;
+}
+
+

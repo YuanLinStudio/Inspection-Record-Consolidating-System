@@ -1,0 +1,366 @@
+* {
+    font-family: "Microsoft YaHei";
+}
+
+#leftWidget {
+    background-color: #26292C;
+    border-top: 1px solid #26292C;
+    border-bottom: 1px solid #26292C;
+    border-left: 1px solid #26292C;
+    border-top-left-radius: 2px;
+    border-bottom-left-radius: 2px;
+}
+
+#topWidget {
+    background-color: #F5F5F5;
+    border-top: 1px solid #DDDDDD;
+    border-top-right-radius: 2px;
+}
+
+#mainWidget {
+    background-color: #F5F5F5;
+    border-right: 1px solid #DDDDDD;
+    border-bottom: 1px solid #DDDDDD;
+    border-bottom-right-radius: 2px;
+}
+
+#settingsButton,
+#commandButton,
+#qrCodeButton {
+    border: 1px solid transparent;
+    border-radius: 1px;
+
+    color: transparent;
+    background-repeat: no-repeat;
+    width: 40px;
+    height: 30px;
+}
+
+#settingsButton:hover,
+#commandButton:hover,
+#qrCodeButton:hover {
+    background-color: rgba(255, 255, 255, 0.100);
+
+    background-repeat: no-repeat;
+}
+
+#settingsButton:pressed,
+#commandButton:pressed,
+#qrCodeButton:pressed {
+    background-color: rgba(255, 255, 255, 0.200);
+    border: 1px solid rgba(255, 255, 255, 0.300);
+    background-repeat: no-repeat;
+}
+
+QToolTip {
+    background-color: white;
+    border: 1px solid #DDDDDD;
+    font-size: 10px;
+    border-radius: 1px;
+}
+
+#iconLabel {
+    background-color: transparent;
+    border: none;
+}
+
+
+#minimizeButton,
+#closeButton {
+    padding: 0px 5px;
+    border-radius: 1px;
+
+    color: transparent;
+    background-repeat: no-repeat;
+    width: 20px;
+    height: 20px;
+}
+
+#closeButton {
+    border-right: 1px solid #DDDDDD;
+}
+
+#minimizeButton:hover,
+#closeButton:hover {
+    background-color: rgba(0, 0, 0, 0.100);
+    background-repeat: no-repeat;
+}
+
+#closeButton:hover {
+    background-color: rgba(255, 0, 0, 0.800);
+    background-repeat: no-repeat;
+}
+
+#minimizeButton:pressed,
+#closeButton:pressed {
+    background-color: rgba(0, 0, 0, 0.200);
+    border: 1px solid rgba(0, 0, 0, 0.300);
+    background-repeat: no-repeat;
+}
+
+
+#titleLabel {
+    font-size: 20px;
+}
+
+#pretitleLabel {
+    font-size: 12px;
+}
+
+#subtitleLabel {
+    font-size: 10px;
+    padding-bottom: 10px;
+}
+
+
+#expressProcessButton {
+    background-color: white;
+    padding: 0px 5px;
+    font-size: 10px;
+    border: 1px solid #EEEEEE;
+    border-radius: 1px;
+    height: 20px;
+}
+
+#expressProcessButton:hover {
+    border: 1px solid #DDDDDD;
+    border-radius: 1px;
+    background-color: rgba(0, 0, 0, 0.050);
+}
+
+#expressProcessButton:pressed {
+    border: 1px solid #DDDDDD;
+    border-radius: 1px;
+    background-color: rgba(0, 0, 0, 0.100);
+}
+
+
+QComboBox::drop-down {
+    subcontrol-origin: padding;
+    subcontrol-position: top right;
+    width: 0px;
+}
+
+QComboBox::down-arrow {
+    border-image: url(:/images/02.bmp);
+
+}
+
+QComboBox::down-arrow:on {
+    top: 1px;
+    left: 1px;
+}
+
+QComboBox QAbstractItemView {
+    color: #26292C;
+    border: 1px solid transparent;
+
+    selection-color: #26292C;
+    selection-background-color: rgba(0, 0, 0, 0.100);
+    background-color: #F5F5F5;
+    outline: 0;
+}
+
+QScrollBar:vertical {
+    border: 1px solid transparent;
+    background: transparent;
+    height: 0px;
+    margin: 0px;
+}
+
+#titleWidget {
+    border-bottom: 1px solid #DDDDDD;
+}
+
+#expressProcessWidget {
+    background-color: rgba(0, 0, 0, 0.025);
+    border-radius: 5px;
+
+}
+
+#pressureLabel,
+#temperatureLabel,
+#pvdfLabel {
+    color: #26292C;
+    padding: 5px 0px;
+}
+
+#pressureLineEdit,
+#temperatureLineEdit,
+#pvdfLineEdit {
+    background-color: transparent;
+    border: none;
+    padding: 10px 0px;
+    font-size: 30px;
+    border-top: 1px solid #DDDDDD;
+}
+
+#pressureFigureFrame,
+#temperatureFigureFrame,
+#pvdfFigureFrame {
+    background-color: transparent;
+    border: none;
+}
+
+
+
+/*
+
+
+
+#MainWindow {
+    background-color: white;
+    border-image: url(./images/bg2.jpg);
+}
+
+
+QWidget #mainWidget {
+    background-color: white;
+}
+
+
+QMenuBar {
+    background-color: rgba(0, 0, 0, 0.500);
+    color: white;
+
+}
+
+QMenuBar::item {
+    spacing: 20px;
+    padding: 20px 20px;
+    background: transparent;
+    border-radius: 2px;
+}
+
+QMenuBar::item:selected {
+    /* when selected using mouse or keyboard
+    background: rgba(255, 255, 255, 0.300);
+}
+
+QMenuBar::item:pressed {
+    background: rgba(255, 255, 255, 0.200);
+}
+
+
+QMenu {
+    color: white;
+    background-color: black;
+    padding: 5px;
+    margin: 2px;
+}
+
+QMenu::item {
+    background-color: transparent;
+    padding: 10px 25px 10px 20px;
+    border: 1px solid transparent
+}
+
+QMenu::item:selected {
+    /* border-color: white; 
+    background-color: rgba(255, 255, 255, 0.300);
+}
+
+QMenu::separator {
+    height: 2px;
+    background: #666666;
+    margin-left: 10px;
+    margin-right: 5px;
+}
+
+QMenu::item:disabled {
+    /* border-color: white; 
+    color: #AAAAAA;
+    font-weight: bold;
+}
+
+QMenu::item:disabled:selected {
+    background-color: transparent;
+}
+
+
+QLabel {
+    color: white;
+    padding: 1px 10px;
+}
+
+#label_Title {
+    font-size: 40px;
+    padding: 30px 0px 10px 0px;
+}
+
+#label_Baudrate_,
+#label_Bytesize_,
+#label_Parity_,
+#label_Port_,
+#label_Stopbits_ {
+    font-weight: bold;
+}
+
+#label_Unit {
+    padding: 0px 20px 30px 20px;
+    font-size: 25px;
+}
+
+#label_Time {
+    color: #FCE100;
+    font-weight: bold;
+}
+
+QLineEdit {
+    font-size: 100px;
+    color: white;
+    background-color: transparent;
+    border-style: none;
+    padding: 20px 20px 0px 20px;
+}
+
+
+#frame {
+    background-color: rgba(0, 0, 0, 0.500);
+    border-radius: 5px;
+}
+
+
+QPushButton {
+    background-color: rgba(255, 255, 255, 0.200);
+    color: white;
+    border: 2px solid transparent;
+    padding: 5px 20px;
+    border-radius: 5px;
+}
+
+#pushButton_Start {
+    font-size: 30px;
+}
+
+QPushButton:hover {
+    border: 2px solid #CCCCCC;
+}
+
+QPushButton:pressed {
+    background-color: transparent;
+    padding: 5px 20px;
+    border-radius: 2px;
+}
+
+QPushButton:checked {
+    background-color: rgba(255, 255, 255, 0.200);
+}
+
+QStatusBar {
+    color: white;
+    border: 5px solid transparent;
+    min-height: 40px;
+}
+
+
+QMessageBox {
+    background-color: rgb(10, 10, 10);
+}
+
+QMessageBox QLabel {
+    color: white;
+    font-size: 20px;
+}
+
+*/
