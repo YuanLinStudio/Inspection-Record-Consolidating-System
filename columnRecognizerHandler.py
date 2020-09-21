@@ -1,6 +1,8 @@
 import pandas
 
-from JsonService import loadJson, saveJson
+from JsonService import JsonService
+
+jsonService = JsonService()
 
 dataFrame = pandas.read_csv('列识别.csv')
 dataFrame.dropna(inplace=True)
@@ -11,6 +13,6 @@ for index, row in dataFrame.iterrows():
 
     columnRecognizer[row['原始列']] = row['标准列']
 
-saveJson('columnRecognizer.json', columnRecognizer)
+jsonService.save('columnRecognizer.json', columnRecognizer)
 
 print(columnRecognizer)

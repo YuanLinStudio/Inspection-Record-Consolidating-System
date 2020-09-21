@@ -1,9 +1,4 @@
 # Project specified
-*.csv
-*.json
-*.xls
-!列识别.csv
-!columnRecognizer.json
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
