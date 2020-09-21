@@ -1,9 +1,27 @@
 # Project specified
-*.csv
-*.json
-*.xls
-!列识别.csv
-!columnRecognizer.json
+
+车站.csv
+stations.json
+!example files/车站.csv
+!example files/stations.json
+
+监督员编号对照表.csv
+supervisors.json
+!example files/监督员编号对照表.csv
+!example files/supervisors.json
+
+原始数据.csv
+!example files/原始数据.csv
+
+责任单位.csv
+departments.json
+!example files/责任单位.csv
+!example files/departments.json
+
+attachment.json
+
+2020年8月数据汇总表.xls
+!example files/2020年8月数据汇总表.xls
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
