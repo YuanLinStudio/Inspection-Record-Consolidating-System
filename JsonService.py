@@ -16,13 +16,22 @@ class JsonService:
     filename = ''  # JSON 文件的目录文件名
     properties = {}  # JSON 文件内容
 
-    def __init__(self, name='settings.json'):
+    def __init__(self, filename=None):
         '''
         初始化
         新建对象时默认执行
         '''
 
-        pass
+        if filename is not None:
+
+            # 获取目录文件名
+            self.filename = filename
+
+            # 读入 JSON 文件
+            text = self.__readFile()
+
+            if len(text) > 0:
+                self.properties = json.loads(text)
 
     def __readFile(self):
         '''
@@ -94,32 +103,46 @@ class JsonService:
         else:
             return default
 
-    def load(self, filename):
+    def load(self, filename=None):
         '''
         读取 JSON 文件所有内容
 
         参数值：
-            filename (str): JSON 文件名和目录
+            filename (str) <OPTIONAL = self.filename>: JSON 文件名和目录
 
         返回值：
             dic (dict): JSON 文件对应的 dict
         '''
 
-        with open(filename, 'r', encoding='utf-8') as json_file:
-            dic = json.load(json_file)
-        return dic
+        if filename is None:
 
-    def save(self, filename, dic):
+            filename = self.filename
+
+        with open(filename, 'r', encoding='utf-8') as jsonFile:
+
+            self.properties = json.load(jsonFile)
+
+        return self.properties
+
+    def save(self, filename=None, dic=None):
         '''
         写入 JSON 文件所有内容
 
         参数值：
-            filename (str): JSON 文件名和目录
-            dic (dict): 要写入 JSON 的 dict
+            filename (str) <OPTIONAL = self.filename>: JSON 文件名和目录
+            dic (dict) <OPTIONAL = self.properties>: 要写入 JSON 的 dict
         '''
 
-        with open(filename, 'w', encoding='utf-8') as json_file:
-            json.dump(dic, json_file, ensure_ascii=False, cls=JsonEncoder)
+        if filename is None:
+
+            filename = self.filename
+
+        if dic is None:
+
+            dic = self.properties
+
+        with open(filename, 'w', encoding='utf-8') as jsonFile:
+            json.dump(dic, jsonFile, ensure_ascii=False, cls=JsonEncoder)
 
 
 class JsonEncoder(json.JSONEncoder):
@@ -138,4 +161,3 @@ class JsonEncoder(json.JSONEncoder):
             return obj.__str__()
         else:
             return super(JsonEncoder, self).default(obj)
-            

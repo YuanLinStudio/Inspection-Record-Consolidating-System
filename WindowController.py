@@ -146,7 +146,7 @@ class WindowController:
             dataFrame = self.attachmentMatch.operate(dataFrame, attachmentDir)
 
             attachmentDict = self.attachmentMatch.getHashDict()
-            self.jsonService.save('attachment.json', attachmentDict)
+            self.jsonService.save(attachmentDict, 'attachment.json')
 
             dataFrame = self.postprocess.reorderAfterAttachmentMatch(dataFrame)
 
