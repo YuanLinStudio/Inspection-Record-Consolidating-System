@@ -4,5 +4,5 @@
 
 使用说明：
 
-- 将 example files/ 下的所有文件移动到根目录
+- 将 `example files/` 下的所有文件移动到根目录
 - 运行 `main.py`
