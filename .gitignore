@@ -1,18 +1,9 @@
 # Project specified
-车站.csv
-stations.json
-
-监督员编号对照表.csv
-supervisors.json
-
-原始数据.csv
-
-责任单位.csv
-departments.json
-
-attachment.json
-
-2020年8月服务数据汇总表.xls
+*.csv
+*.json
+*.xls
+!列识别.csv
+!columnRecognizer.json
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
