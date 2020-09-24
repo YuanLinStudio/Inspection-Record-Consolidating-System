@@ -1,4 +1,6 @@
+import os
 import sys
+import time
 
 import numpy
 import pandas
@@ -38,6 +40,8 @@ class WindowController:
         self.attachmentMatch = AttachmentMatch()
         self.jsonService = JsonService()
 
+        self.settingJsonService = JsonService('settings.json')
+
         # ## 连接 Slots 和 Signals
 
         # 快速处理: 更改 --> 快速处理
@@ -54,7 +58,32 @@ class WindowController:
         self.mainWindow.qrCodeButton.setVisible(False)
         self.mainWindow.commandButton.setVisible(False)
 
+        # 从 settings.json 取值更新窗口
+        self.updateLastProcess()
+
         self.mainWindow.show()
+
+    def updateLastProcess(self):
+        '''
+        从 settings.json 取值更新窗口
+        '''
+
+        lastProcessDict = self.settingJsonService.get('last process')
+
+        if lastProcessDict is not None:
+
+            # 若无上次记录，则隐藏 last process widget
+            self.mainWindow.lastProcessWidget.setVisible(
+                lastProcessDict['time'] != '')
+
+            self.mainWindow.lastProcessTimeLabel.setText(
+                lastProcessDict['time'])
+            self.mainWindow.lastProcessTotalRecordsLabel.setText(
+                str(lastProcessDict['total records']))
+            self.mainWindow.lastProcessValidRecordsLabel.setText(
+                str(lastProcessDict['valid records']))
+            self.mainWindow.lastProcessAttachmentsCountLabel.setText(
+                str(lastProcessDict['attachments count']))
 
     def informationMessage(self, message='系统运行中', autoClose=3):
         '''
@@ -146,7 +175,7 @@ class WindowController:
             dataFrame = self.attachmentMatch.operate(dataFrame, attachmentDir)
 
             attachmentDict = self.attachmentMatch.getHashDict()
-            self.jsonService.save(attachmentDict, 'attachment.json')
+            self.jsonService.save('attachment.json', attachmentDict)
 
             dataFrame = self.postprocess.reorderAfterAttachmentMatch(dataFrame)
 
@@ -169,7 +198,37 @@ class WindowController:
 
         dataFrame.to_csv(exportFile, encoding="utf_8_sig", index=False)
 
+        # ## 更新 settings.json 文件
+
+        thisProcessDetail = dict()
+
+        # 处理时间
+        timeStamp = time.strftime('%Y-%m-%d %H:%M:%S',
+                                  time.localtime(time.time()))
+        thisProcessDetail['time'] = timeStamp
+
+        # 全部记录
+        totalRecords = originalDataFrame.shape[0]
+        thisProcessDetail['total records'] = totalRecords
+
+        # 有效记录
+        validRecords = dataFrame.shape[0]
+        thisProcessDetail['valid records'] = validRecords
+
+        # 有效附件
+        if self.attachmentMatch.archivedPath != '':
+            attachmentsCount = len(os.listdir(
+                self.attachmentMatch.archivedPath))
+        else:
+            attachmentsCount = 0
+        thisProcessDetail['attachments count'] = attachmentsCount
+
+        self.settingJsonService.set('last process', thisProcessDetail)
+
         self.informationMessage('快速处理成功')
+
+        # 从 settings.json 取值更新窗口
+        self.updateLastProcess()
 
 
 if __name__ == '__main__':

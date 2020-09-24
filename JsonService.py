@@ -22,7 +22,21 @@ class JsonService:
         新建对象时默认执行
         '''
 
-        if filename is not None:
+        if filename == 'settings.json':
+
+            # 获取目录文件名
+            try:
+                self.filename = self.getJsonDir(filename)
+            except Exception:
+                return
+
+            # 读入 JSON 文件
+            text = self.__readFile()
+
+            if len(text) > 0:
+                self.properties = json.loads(text)
+
+        elif filename is not None:
 
             # 获取目录文件名
             self.filename = filename
@@ -32,6 +46,38 @@ class JsonService:
 
             if len(text) > 0:
                 self.properties = json.loads(text)
+
+    def getJsonDir(self, name='settings.json'):
+        '''
+        设置 settings.json 文件
+
+        返回值：
+            filename (str): JSON 文件的名称
+        '''
+
+        # 设置 JSON 文件的目录文件名
+        path = os.getcwd()
+        print("path: " + path)
+        filepath = os.path.join(path, 'settings')
+        filename = os.path.join(filepath, name)
+
+        # 若不存在，则创建目录并重置原始 JSON 文件
+        if not os.path.exists(filename):
+
+            # 创建目录
+            os.makedirs(filepath)
+
+            # 将原始 JSON 文件复制到指定文件夹中
+            init_filename = os.path.join(path, 'initial',
+                                         name)
+            print(init_filename)
+            print(filepath + '\\')
+            cmd = 'xcopy ' + '"' + init_filename + '" "' + filepath + '\\"'
+            os.system(cmd)
+
+        print(filename)
+
+        return filename
 
     def __readFile(self):
         '''

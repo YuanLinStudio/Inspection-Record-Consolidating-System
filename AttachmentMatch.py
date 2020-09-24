@@ -9,6 +9,7 @@ class AttachmentMatch:
     dataFrame = []
     fileList = list()
     hashDict = dict()
+    archivedPath = ''
     dir = ''
 
     def __init__(self):
