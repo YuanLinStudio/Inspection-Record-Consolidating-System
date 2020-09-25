@@ -52,6 +52,10 @@ class WindowController:
         self.mainWindow.generalProcessButton.pressed.connect(
             self.generalProcess)
 
+        # 开始处理/附件匹配选择框: 状态变化 --> 附件选择是否生效
+        self.mainWindow.shouldMatchAttachmentCheckBox.stateChanged.connect(
+            self.shouldEnableAttachmentMatch)
+
         # 开始处理/原始数据浏览: 按下 --> 选择原始数据文件
         self.mainWindow.generalProcessOriginalDataExploreButton.pressed.connect(
             self.exploreOriginalDataFile)
@@ -84,7 +88,7 @@ class WindowController:
         从 settings.json 取值更新窗口
         '''
 
-        # 路径和目录
+        # Line Edit 路径和目录
         self.mainWindow.generalProcessOriginalDataDirLineEdit.setText(
             self.settingJsonService.get('original data file'))
         self.mainWindow.generalProcessAttachmentLocationDirLineEdit.setText(
@@ -92,8 +96,10 @@ class WindowController:
         self.mainWindow.generalProcessExportFileDirLineEdit.setText(
             self.settingJsonService.get('export data file'))
 
-        # 上次处理
+        # 更新 settings.json 当前目录
+        self.settingJsonService.set('current directory', os.getcwd())
 
+        # 上次处理
         lastProcessDict = self.settingJsonService.get('last process')
 
         if lastProcessDict is not None:
@@ -218,7 +224,7 @@ class WindowController:
         一般处理
         '''
 
-        shouldAttachmentMatch = True  # 是否要进行附件匹配的标志
+        shouldAttachmentMatch = self.mainWindow.shouldMatchAttachmentCheckBox.isChecked()  # 是否要进行附件匹配的标志
 
         # ## 目录读入和处理
 
@@ -276,6 +282,25 @@ class WindowController:
         self.updateSettingJsonUponProcessFinish(originalDataFrame, dataFrame)
 
         self.informationMessage('处理成功')
+
+    def shouldEnableAttachmentMatch(self):
+        '''
+        附件选择是否生效
+        '''
+
+        if self.mainWindow.shouldMatchAttachmentCheckBox.isChecked() == True:
+
+            self.mainWindow.generalProcessAttachmentLocationWidget.setEnabled(
+                True)
+            self.mainWindow.generalProcessAttachmentLocationTitleLabel.setEnabled(
+                True)
+
+        else:
+
+            self.mainWindow.generalProcessAttachmentLocationWidget.setEnabled(
+                False)
+            self.mainWindow.generalProcessAttachmentLocationTitleLabel.setEnabled(
+                False)
 
     def exploreOriginalDataFile(self) -> str:
         '''

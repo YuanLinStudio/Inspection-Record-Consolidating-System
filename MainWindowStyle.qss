@@ -111,6 +111,7 @@ QToolTip {
     font-size: 10px;
     padding-bottom: 10px;
 }
+
 #generalProcessButton,
 #expressProcessButton {
     background-color: white;
@@ -156,6 +157,37 @@ QLineEdit {
     border-radius: 2px;
     border: 1px solid #E5E5E5;
     background-color: #FFFFFF;
+}
+
+QCheckBox::indicator {
+    width: 10px;
+    height: 10px;
+    border-radius: 2px;
+    border: 1px solid #E5E5E5;
+    background-color: #FFFFFF;
+
+}
+
+QCheckBox::indicator:checked {
+    image: url(./images/checked.png);
+}
+
+QCheckBox::indicator:unchecked:hover,
+QCheckBox::indicator:checked:hover {
+    width: 10px;
+    height: 10px;
+    border-radius: 2px;
+    border: 1px solid #E5E5E5;
+    background-color: rgba(0, 0, 0, 0.010);
+}
+
+QCheckBox::indicator:unchecked:pressed,
+QCheckBox::indicator:checked:pressed {
+    width: 10px;
+    height: 10px;
+    border-radius: 2px;
+    border: 1px solid #E5E5E5;
+    background-color: rgba(0, 0, 0, 0.050);
 }
 
 

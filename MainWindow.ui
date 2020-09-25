@@ -416,14 +416,14 @@
                    <property name="bottomMargin">
                     <number>0</number>
                    </property>
-                   <item row="0" column="0">
+                   <item row="1" column="0">
                     <widget class="QLabel" name="generalProcessOriginalDataTitleLabel">
                      <property name="text">
                       <string>原始数据</string>
                      </property>
                     </widget>
                    </item>
-                   <item row="0" column="1">
+                   <item row="1" column="1">
                     <widget class="QWidget" name="generalProcessOriginalDataWidget" native="true">
                      <layout class="QHBoxLayout" name="horizontalLayout_16">
                       <property name="spacing">
@@ -458,14 +458,14 @@
                      </layout>
                     </widget>
                    </item>
-                   <item row="1" column="0">
+                   <item row="2" column="0">
                     <widget class="QLabel" name="generalProcessAttachmentLocationTitleLabel">
                      <property name="text">
                       <string>附件所在文件夹</string>
                      </property>
                     </widget>
                    </item>
-                   <item row="1" column="1">
+                   <item row="2" column="1">
                     <widget class="QWidget" name="generalProcessAttachmentLocationWidget" native="true">
                      <layout class="QHBoxLayout" name="horizontalLayout_17">
                       <property name="spacing">
@@ -500,14 +500,14 @@
                      </layout>
                     </widget>
                    </item>
-                   <item row="2" column="0">
+                   <item row="3" column="0">
                     <widget class="QLabel" name="generalProcessExportFileTitleLabel">
                      <property name="text">
                       <string>记录导出为</string>
                      </property>
                     </widget>
                    </item>
-                   <item row="2" column="1">
+                   <item row="3" column="1">
                     <widget class="QWidget" name="generalProcessExportFileWidget" native="true">
                      <layout class="QHBoxLayout" name="horizontalLayout_18">
                       <property name="spacing">
@@ -540,6 +540,23 @@
                        </widget>
                       </item>
                      </layout>
+                    </widget>
+                   </item>
+                   <item row="0" column="0">
+                    <widget class="QLabel" name="shouldMatchAttachmentLabel">
+                     <property name="text">
+                      <string>          </string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="0" column="1">
+                    <widget class="QCheckBox" name="shouldMatchAttachmentCheckBox">
+                     <property name="text">
+                      <string>附件匹配</string>
+                     </property>
+                     <property name="checked">
+                      <bool>true</bool>
+                     </property>
                     </widget>
                    </item>
                   </layout>
