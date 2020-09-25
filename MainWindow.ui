@@ -442,7 +442,11 @@
                        <number>0</number>
                       </property>
                       <item>
-                       <widget class="QLineEdit" name="generalProcessOriginalDataDirLineEdit"/>
+                       <widget class="QLineEdit" name="generalProcessOriginalDataDirLineEdit">
+                        <property name="readOnly">
+                         <bool>true</bool>
+                        </property>
+                       </widget>
                       </item>
                       <item>
                        <widget class="QPushButton" name="generalProcessOriginalDataExploreButton">
@@ -480,7 +484,11 @@
                        <number>0</number>
                       </property>
                       <item>
-                       <widget class="QLineEdit" name="generalProcessAttachmentLocationDirLineEdit"/>
+                       <widget class="QLineEdit" name="generalProcessAttachmentLocationDirLineEdit">
+                        <property name="readOnly">
+                         <bool>true</bool>
+                        </property>
+                       </widget>
                       </item>
                       <item>
                        <widget class="QPushButton" name="generalProcessAttachmentLocationExploreButton">
@@ -518,7 +526,11 @@
                        <number>0</number>
                       </property>
                       <item>
-                       <widget class="QLineEdit" name="generalProcessExportFileDirLineEdit"/>
+                       <widget class="QLineEdit" name="generalProcessExportFileDirLineEdit">
+                        <property name="readOnly">
+                         <bool>true</bool>
+                        </property>
+                       </widget>
                       </item>
                       <item>
                        <widget class="QPushButton" name="generalProcessExportFileExploreButton">
@@ -577,7 +589,7 @@
                      </property>
                      <property name="icon">
                       <iconset>
-                       <normaloff>images/command.png</normaloff>images/command.png</iconset>
+                       <normaloff>images/start.png</normaloff>images/start.png</iconset>
                      </property>
                     </widget>
                    </item>
@@ -684,7 +696,7 @@
                      </property>
                      <property name="icon">
                       <iconset>
-                       <normaloff>images/command.png</normaloff>images/command.png</iconset>
+                       <normaloff>images/express.png</normaloff>images/express.png</iconset>
                      </property>
                     </widget>
                    </item>
@@ -714,7 +726,7 @@
            <widget class="QWidget" name="lastProcessWidget" native="true">
             <layout class="QVBoxLayout" name="verticalLayout_4">
              <property name="spacing">
-              <number>10</number>
+              <number>4</number>
              </property>
              <property name="leftMargin">
               <number>10</number>

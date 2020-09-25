@@ -1,9 +1,13 @@
 {
-    "current dir": "/",
+    "current dir": "",
+    "original data file": "",
+    "attachment directory": "",
+    "export data file": "C:/\u670d\u52a1\u6570\u636e\u6c47\u603b\u8868.csv",
     "last process": {
         "time": "",
         "total records": 0,
         "valid records": 0,
         "attachments count": 0
-    }
+    },
+    "recent process": []
 }

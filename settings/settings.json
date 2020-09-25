@@ -1,9 +1,1 @@
-{
-    "current dir": "/",
-    "last process": {
-        "time": "1",
-        "total records": 0,
-        "valid records": 0,
-        "attachments count": 0
-    }
-}
+{"current dir": "", "original data file": "C:/Users/yuanl/Downloads/4165188_202009181827073833.csv", "attachment directory": "C:/Users/yuanl/Documents", "export data file": "C:/Users/yuanl/OneDrive/\u684c\u9762/\u670d\u52a1\u6570\u636e\u6c47\u603b\u8868.csv", "last process": {"time": "2020-09-25 03:06:33", "total records": 70, "valid records": 33, "attachments count": 0}, "recent process": [{"time": "2020-09-25 02:31:00", "total records": 70, "valid records": 33, "attachments count": 9}, {"time": "2020-09-25 02:33:17", "total records": 70, "valid records": 33, "attachments count": 0}, {"time": "2020-09-25 02:50:58", "total records": 70, "valid records": 33, "attachments count": 9}, {"time": "2020-09-25 03:06:33", "total records": 70, "valid records": 33, "attachments count": 0}]}
