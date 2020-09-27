@@ -1,13 +1,13 @@
 {
     "current directory": "C:\\Users\\yuanl\\Documents\\Developer\\Inspection Record Consolidating System",
-    "original data file": "C:/Users/yuanl/Downloads/4165188_202009181827073833.csv",
+    "original data file": "C:/Users/yuanl/Downloads/4165188_202009271023346892.csv/4165188_202009271023346892.csv",
     "attachment directory": "C:/Users/yuanl/Downloads/\u817e\u8baf\u95ee\u5377/\u95ee\u5377#4165188 - \u897f\u5b89\u5730\u94c1\u670d\u52a1\u76d1\u7763\u5458\u68c0\u67e5\u8bb0\u5f55\u63d0\u4ea4\u7cfb\u7edf",
     "export data file": "C:/Users/yuanl/OneDrive/\u684c\u9762/\u670d\u52a1\u6570\u636e\u6c47\u603b\u8868.csv",
     "last process": {
-        "time": "2020-09-25 04:01:03",
-        "total records": 70,
-        "valid records": 33,
-        "attachments count": 9
+        "time": "2020-09-26 19:29:36",
+        "total records": 208,
+        "valid records": 73,
+        "attachments count": 26
     },
     "recent process": [
         {
@@ -63,6 +63,12 @@
             "total records": 70,
             "valid records": 33,
             "attachments count": 9
+        },
+        {
+            "time": "2020-09-26 19:29:36",
+            "total records": 208,
+            "valid records": 73,
+            "attachments count": 26
         }
     ]
 }
