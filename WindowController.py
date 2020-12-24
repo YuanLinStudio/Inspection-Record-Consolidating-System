@@ -316,7 +316,7 @@ class WindowController:
 
         # 选取原始记录文件
         originalDataFile, filetype = QtWidgets.QFileDialog.getOpenFileName(
-            self.mainWindow, '选择原始记录文件', self.settingJsonService.get('original data file'), 'All Files (*.*);;CSV (Comma delimited) (*.csv)')
+            self.mainWindow, '选择原始记录文件', self.settingJsonService.get('original data file'), 'All Files (*.*);;CSV (Comma delimited) (*.csv);;XLSX (*.xlsx);;XLS (*.xls)')
 
         # 选择校验
         if originalDataFile is None or originalDataFile == '':
@@ -326,9 +326,9 @@ class WindowController:
         # 文件格式校验
         filetype = originalDataFile.split('.')[-1]
 
-        if filetype.lower() != 'csv':
+        if filetype.lower() != 'csv' and filetype.lower() != 'xlsx' and filetype.lower() != 'xls':
 
-            self.informationMessage('文件格式错误，请选择 *.csv 格式的文件')
+            self.informationMessage('文件格式错误，请选择 *.csv / *.xlsx / *.xls 格式的文件')
 
             return None
 
