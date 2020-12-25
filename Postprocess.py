@@ -13,7 +13,7 @@ class Postprocess:
 
         self.dataFrame = dataFrame
 
-        self.filter()
+        #self.filter()
         self.sort()
         self.reorder()
 

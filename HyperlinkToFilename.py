@@ -5,7 +5,7 @@ import pandas
 from pandas import DataFrame
 
 
-class ReadIn:
+class HyperlinkToFilename:
 
     def __init__(self, filename):
         self.filename = filename
@@ -50,17 +50,27 @@ class ReadIn:
                         self.worksheet.cell(
                             row=row, column=currentColumn).value = attachName
 
-    @property
-    def dataFrame(self):
-        self.workbook.save(r'C:\Users\yuanl\OneDrive\桌面\1.xlsx')
-        return DataFrame(self.worksheet.values)
+    def worksheetToDataFrame(self):
+        self.dataFrame = DataFrame(self.worksheet.values)
+        print(self.dataFrame.columns.values)
+        print(self.dataFrame['开始答题时间'])
+
+        # 处理日期时间
+        self.dataFrame['开始答题时间'] = pandas.to_datetime(self.dataFrame['开始答题时间'])
+        self.dataFrame['结束答题时间'] = pandas.to_datetime(self.dataFrame['结束答题时间'])
+
+        # 将 NA 单元格填充为 ''
+        self.dataFrame = self.dataFrame.fillna('')
+
 
 
 if __name__ == '__main__':
     # 执行入口
 
-    r = ReadIn(r'C:\Users\yuanl\OneDrive\桌面\4165188_202012231606191200 - 副本.xlsx')
+    h = HyperlinkToFilename(r'C:\Users\yuanl\OneDrive\桌面\4165188_202012241706123309.xlsx')
 
-    r.attachmentHyperlinkToFilename()
-
-    print(r.dataFrame)
+    h.attachmentHyperlinkToFilename()
+    # h.worksheetToDataFrame()
+    # print(h.dataFrame)
+    
+    h.workbook.save(r'C:\Users\yuanl\OneDrive\桌面\1.xlsx')
