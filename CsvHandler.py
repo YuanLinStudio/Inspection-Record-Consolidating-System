@@ -94,7 +94,7 @@ if __name__ == '__main__':
 
     # 监督员编号
     supervisorsHandler = CsvHandler('监督员编号对照表.csv')
-    supervisorsHandler.operate(supervisors, 'departments.json')
+    supervisorsHandler.operate(supervisors, 'supervisors.json')
 
     # 车站
     stationsHandler = CsvHandler('车站.csv')

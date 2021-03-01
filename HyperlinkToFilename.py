@@ -67,10 +67,10 @@ class HyperlinkToFilename:
 if __name__ == '__main__':
     # 执行入口
 
-    h = HyperlinkToFilename(r'C:\Users\yuanl\OneDrive\桌面\4165188_202012241706123309.xlsx')
+    h = HyperlinkToFilename(r'C:\Users\yuanl\OneDrive\桌面\1.xlsx')
 
     h.attachmentHyperlinkToFilename()
     # h.worksheetToDataFrame()
     # print(h.dataFrame)
     
-    h.workbook.save(r'C:\Users\yuanl\OneDrive\桌面\1.xlsx')
+    h.workbook.save(r'C:\Users\yuanl\OneDrive\桌面\2.xlsx')
