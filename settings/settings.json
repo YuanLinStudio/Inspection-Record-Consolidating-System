@@ -1,13 +1,13 @@
 {
     "current directory": "C:\\Users\\yuanl\\Documents\\Developer\\Inspection Record Consolidating System",
-    "original data file": "C:/Users/yuanl/OneDrive/\u684c\u9762/2.csv",
-    "attachment directory": "C:/Users/yuanl/Downloads/\u817e\u8baf\u95ee\u5377/\u95ee\u5377#4165188 - \u897f\u5b89\u5730\u94c1\u670d\u52a1\u76d1\u7763\u5458\u68c0\u67e5\u8bb0\u5f55\u63d0\u4ea4\u7cfb\u7edf",
+    "original data file": "C:/Users/yuanl/OneDrive/\u684c\u9762/2.CSV",
+    "attachment directory": "C:/Users/yuanl/Downloads/\u817e\u8baf\u95ee\u5377",
     "export data file": "C:/Users/yuanl/OneDrive/\u684c\u9762/\u670d\u52a1\u6570\u636e\u6c47\u603b\u8868.csv",
     "last process": {
-        "time": "2021-02-28 21:38:37",
-        "total records": 212,
-        "valid records": 55,
-        "attachments count": 32
+        "time": "2021-07-26 16:19:01",
+        "total records": 345,
+        "valid records": 175,
+        "attachments count": 99
     },
     "recent process": [
         {
@@ -165,6 +165,48 @@
             "total records": 212,
             "valid records": 55,
             "attachments count": 32
+        },
+        {
+            "time": "2021-03-25 04:14:27",
+            "total records": 468,
+            "valid records": 239,
+            "attachments count": 179
+        },
+        {
+            "time": "2021-04-25 03:53:34",
+            "total records": 400,
+            "valid records": 202,
+            "attachments count": 131
+        },
+        {
+            "time": "2021-05-24 15:42:15",
+            "total records": 493,
+            "valid records": 204,
+            "attachments count": 151
+        },
+        {
+            "time": "2021-06-24 16:38:17",
+            "total records": 428,
+            "valid records": 183,
+            "attachments count": 126
+        },
+        {
+            "time": "2021-07-26 16:18:35",
+            "total records": 345,
+            "valid records": 175,
+            "attachments count": 99
+        },
+        {
+            "time": "2021-07-26 16:18:36",
+            "total records": 345,
+            "valid records": 175,
+            "attachments count": 99
+        },
+        {
+            "time": "2021-07-26 16:19:01",
+            "total records": 345,
+            "valid records": 175,
+            "attachments count": 99
         }
     ]
 }
